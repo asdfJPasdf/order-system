@@ -1,53 +1,98 @@
+-- -----------------------------------------------------
+-- Schema order_system
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `order_system` ;
 
 -- -----------------------------------------------------
--- Schema order-system
+-- Schema order_system
 -- -----------------------------------------------------
-DROP database if exists `order-system`;
-CREATE SCHEMA IF NOT EXISTS `order-system` DEFAULT CHARACTER SET utf8 ;
-USE `order-system` ;
+CREATE SCHEMA IF NOT EXISTS `order_system` DEFAULT CHARACTER SET utf8 ;
+USE `order_system` ;
 
 -- -----------------------------------------------------
--- Table `order-system`.`user`
+-- Table `order_system`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `order-system`.`user` (
-  `user_id` INT NOT NULL AUTO_INCREMENT,
-  `role` VARCHAR(45) NULL,
-  `username` VARCHAR(45) NULL,
-  `name` VARCHAR(45) NULL,
+DROP TABLE IF EXISTS `order_system`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `order_system`.`user` (
+  `id_user` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
-  `salt` VARCHAR(45) NULL,
-  PRIMARY KEY (`user_id`))
+  `last_name` VARCHAR(45) NULL,
+  `username` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `password` VARCHAR(64) NULL,
+  `salt` VARCHAR(64) NULL,
+  `role` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_user`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `order_system`.`product_category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `order_system`.`product_category` ;
+
+CREATE TABLE IF NOT EXISTS `order_system`.`product_category` (
+  `product_category_id` INT NOT NULL AUTO_INCREMENT,
+  `product_category_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`product_category_id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `order-system`.`order`
+-- Table `order_system`.`product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `order-system`.`order` (
-  `order_id` INT NOT NULL AUTO_INCREMENT,
-  `id_user` INT NOT NULL,
-  PRIMARY KEY (`order_id`),
-  FOREIGN KEY (id_user) REFERENCES `user`(user_id) ON DELETE CASCADE)
-ENGINE = InnoDB;
+DROP TABLE IF EXISTS `order_system`.`product` ;
 
-
--- -----------------------------------------------------
--- Table `order-system`.`product`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `order-system`.`product` (
-  `id_product` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `order_system`.`product` (
+  `product_id` INT NOT NULL AUTO_INCREMENT,
   `product_name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_product`))
+  `product_category_id` INT NULL,
+  `product_description` VARCHAR(45) NULL,
+  `product_price` FLOAT NULL,
+  PRIMARY KEY (`product_id`),
+  CONSTRAINT `product_category`
+    FOREIGN KEY (`product_category_id`)
+    REFERENCES `order_system`.`product_category` (`product_category_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `order-system`.`order_product`
+-- Table `order_system`.`order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `order-system`.`order_product` (
-  `id_product` INT NOT NULL,
+DROP TABLE IF EXISTS `order_system`.`order` ;
+
+CREATE TABLE IF NOT EXISTS `order_system`.`order` (
+  `order_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `product_order_id` INT NOT NULL,
+  PRIMARY KEY (`order_id`),
+  CONSTRAINT `user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `order_system`.`user` (`id_user`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `order_system`.`product_order`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `order_system`.`product_order` ;
+
+CREATE TABLE IF NOT EXISTS `order_system`.`product_order` (
   `order_id` INT NOT NULL,
-  FOREIGN KEY (id_product) REFERENCES product(id_product) ON DELETE CASCADE,
-  FOREIGN KEY(order_id) REFERENCES `order`(order_id) ON DELETE CASCADE)
+  `product_id` INT NOT NULL,
+  CONSTRAINT `order_id`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `order_system`.`order` (`order_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `product_id`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `order_system`.`product` (`product_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+
