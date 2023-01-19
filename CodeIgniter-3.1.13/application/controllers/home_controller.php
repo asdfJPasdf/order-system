@@ -42,7 +42,7 @@ class home_controller extends CI_Controller
         $this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
 		$this->load->view('order',$old);
-		//echo '<pre>';print_r($this->home_model->get_active_orders());echo '</pre>';
+		
 		
     }
 
@@ -52,7 +52,7 @@ class home_controller extends CI_Controller
 	public function check_SignIn()
 	{
 		if(!isset($this->session->user_id)){
-			header('Location: '.base_url().'login');
+			header('Location: '.base_url().'/login');
 		}
 	}
 
@@ -62,7 +62,7 @@ class home_controller extends CI_Controller
 	public function logout()
 	{
 		$this->session->unset_userdata('user_id');
-		header('Location: '.base_url());
+		header('Location: '.base_url().'/login');
 	}
 
 
