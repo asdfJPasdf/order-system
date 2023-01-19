@@ -26,13 +26,23 @@ class home_controller extends CI_Controller
 	 */
     public function index() {
 		$data = array(
-            'url' => base_url(),
+           'url' => base_url(),
+			
         );
+		$activ = array(
+			'orders'=>$this->get_orders("active"),
+			'status'=> 'aktive',
+		);
+		$old = array(
+			'orders'=>$this->get_orders("old"),
+			'status'=>'alte'
+		);
 		$this->check_SignIn();
         $this->load->view('templates/head');
         $this->load->view('home_view',$data);
-		$this->load->view('order');
-		echo '<pre>';print_r($this->home_model->get_active_orders());echo '</pre>';
+		$this->load->view('order',$activ);
+		$this->load->view('order',$old);
+		//echo '<pre>';print_r($this->home_model->get_active_orders());echo '</pre>';
 		
     }
 
@@ -57,19 +67,24 @@ class home_controller extends CI_Controller
 
 
 	/**
-	 * Get all order with the status active
+	 * Get all order with the status 
 	 */
-	public function get_active_orders()
+	public function get_orders($status)
 	{
+		$orders = $this->home_model->get_active_orders($status);
 		
+		$sortet_orders = array();
+		foreach($orders as $order){
+			$key = $order['orders_id'];
+			if (!isset($sortet_orders[$key])) {
+				$sortet_orders[$key] = array();
+			}
+			$sortet_orders[$key][] = $order;
+		}
+
+		return $sortet_orders;
 	}
 	
-	/**
-	 * get all 5 with the status old
-	 */
-	public function get_old_orders()
-	{
-		
-	}
+
 
 }

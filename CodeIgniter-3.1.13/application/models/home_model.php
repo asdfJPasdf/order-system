@@ -5,13 +5,25 @@ class home_model extends CI_Model {
 	/**
 	 * Get all order with the status active
 	 */
-	function get_active_orders()
+	function get_active_orders($status)
 	{  
-        //echo '<pre>';print_r($this->session->all_userdata());exit;
-        $this->db->where('user_id', $this->session->user_id);
-        $this->db->where('status', 'active');
-		$query = $this->db->get('order');
-        return $query->result();
+        // //echo '<pre>';print_r($this->session->all_userdata());exit;
+		// $this->db->select('orders.*, product.product_name, product.product_price');
+        // $this->db->where('user_id', $this->session->user_id);
+        // $this->db->where('status', 'active');
+		// //$this->db->where('product_order.orders_id','orders.orders_id');
+		// $this->db->where('product_order.product_id','product.product_id');
+		// $query = $this->db->get('orders, product, product_order');
+        // return $query->result();
+
+
+		return $this->db->query("
+		Select orders.*, product.product_name, product.product_price from orders,product,product_order
+		where product_order.orders_id = orders.orders_id
+		AND orders.status = '".$status."'
+		AND orders.user_id = ".$this->session->user_id."
+		AND  product_order.product_id = product.product_id;
+		")->result_array();
 	}
 	
 	/**
@@ -21,7 +33,7 @@ class home_model extends CI_Model {
 	{
         $this->db->where('user_id', $this->session->user_id);
 		$this->db->where('status', 'old');
-		$query = $this->db->get('order');
+		$query = $this->db->get('orders');
         return $query->result();
 	}
 }
