@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card p-4 rounded-lg">
       <h2 class="card-title text-center">Registrieren</h2>
-      <form class="form-signin" action="<?php echo base_url()."index.php/login_controller/newuser"?>" method="post">
+      <form class="form-signin" action="<?php echo base_url()."login_controller/newuser"?>" method="post">
           <div class="form-group">
             <label for="firstName">Vorname</label>
             <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Gib deinen Vornamen ein">

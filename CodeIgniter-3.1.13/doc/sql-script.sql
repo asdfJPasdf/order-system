@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS `order_system`.`user` (
   `last_name` VARCHAR(45) NULL,
   `username` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
-  `password` VARCHAR(64) NULL,
-  `salt` VARCHAR(64) NULL,
+  `password` VARCHAR(45) NULL,
+  `salt` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
   PRIMARY KEY (`id_user`))
 ENGINE = InnoDB;
@@ -66,6 +66,7 @@ DROP TABLE IF EXISTS `order_system`.`order` ;
 CREATE TABLE IF NOT EXISTS `order_system`.`order` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
+  `status`  VARCHAR(45) NOT NULL,
   `product_order_id` INT NOT NULL,
   PRIMARY KEY (`order_id`),
   CONSTRAINT `user_id`

@@ -25,8 +25,51 @@ class home_controller extends CI_Controller
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
     public function index() {
+		$data = array(
+            'url' => base_url(),
+        );
+		$this->check_SignIn();
         $this->load->view('templates/head');
-        $this->load->view('home_view');
+        $this->load->view('home_view',$data);
+		$this->load->view('order');
+		echo '<pre>';print_r($this->home_model->get_active_orders());echo '</pre>';
+		
     }
+
+	/**
+	 * check the sign in if not sign in send the user back to login
+	 */
+	public function check_SignIn()
+	{
+		if(!isset($this->session->user_id)){
+			header('Location: '.base_url().'login');
+		}
+	}
+
+	/**
+	 * Logout the user
+	 */
+	public function logout()
+	{
+		$this->session->unset_userdata('user_id');
+		header('Location: '.base_url());
+	}
+
+
+	/**
+	 * Get all order with the status active
+	 */
+	public function get_active_orders()
+	{
+		
+	}
+	
+	/**
+	 * get all 5 with the status old
+	 */
+	public function get_old_orders()
+	{
+		
+	}
 
 }

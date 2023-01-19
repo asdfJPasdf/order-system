@@ -30,39 +30,35 @@ function __construct() {
         $user = $this->login_model->get_users($this->input->post('username'));
 
 
-                if($this->chechPassword($inputPassword,$user[0]->salt) == $user[0]->password){
+                if($this->checkPassword($inputPassword/*,$user[0]->salt*/) == $user[0]->password){
+                    $id = $user[0]->id_user;
+                    $this->session->set_userdata('user_id', $id);
                     header('Location: '.base_url());
                 }
                 else{
-                    header('Location: '.base_url().'index.php/login');
+                    
+                    header('Location: '.base_url().'login');
                 }
         
-    }   
-    public function chechPassword($pw, $salt)
+    }  
+
+    public function checkPassword($pw, /*$salt*/)
     {
-        return hash('sha256',$pw.$salt);
+    return md5($pw/*.$salt*/);
     }
 
     public function samePasswort()
     {
-        if($this->input->post('password') == $this->input->post('confirm_password')){
-            return TRUE;
-        }
-        else{
-            return FALSE;
-        }
+        return $this->input->post('password') == $this->input->post('confirm_password');
+        
     }
 
-    public function genrateHash($pw)
+    public function getSalt()
     {
-        $salt = hash('sha256', rand());
-        $hash = hash('sha256',$pw.$salt);
-
-        return array(
-            'salt' => $salt,
-            'password' => $hash
-        );
+        return md5(rand());
     }
+
+       
 
     public function signup(){
         $this->load->view('templates/head');
@@ -74,16 +70,20 @@ function __construct() {
         if($this->samePasswort()){
         $first_name = $this->input->post('first_name');
         $last_name = $this->input->post('last_name');
-        $password = $this->genrateHash($this->input->post('password'));
+       // $salt = $this->getSalt();
+       // $this->session->set_userdata('salt',$salt);
+        $password = $this->checkPassword($this->input->post('password'));
         $email = $this->input->post('email');
         $username = $this->input->post('username');
-        $this->login_model->addUser($first_name,$last_name,$username, $password['password'],$password['salt'],$email);
-        header('Location:'.base_url().'index.php/login');
+        //echo '<pre>';print_r($this->session->all_userdata());echo '</pre>';
+        //echo '<pre>';print_r(array($first_name,$last_name,$username, $password,$email));exit;
+        $this->login_model->addUser($first_name,$last_name,$username, $password,$email);
+        header('Location:'.base_url().'login');
 
         }
 
         else{
-            header('Location:'.base_url().'index.php/login/singup');
+            header('Location:'.base_url().'login/singup');
         }
     }
 
