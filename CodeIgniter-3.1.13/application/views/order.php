@@ -1,11 +1,10 @@
 
 
 <h2><?php echo $status?> Bestellungen</h2>
-
 <div class="container">
-  <div class="row">
+<div class="row">
 <?php foreach($orders as $order){?>
-<div class="col-lg-2 grid-margin stretch-card">
+<div class="col-lg-3 grid-margin stretch-card">
   
               <div class="card">
                 <div class="card-body">
@@ -24,14 +23,14 @@
                       <?php foreach($order as $o){?>
                         <tr>
                           <td><?php echo $o['product_name'];?></td>
-                          <td>$<?php echo $o['product_price'];?></td>
+                          <td>CHF <?php echo $o['product_price'];?></td>
                           <?php $total += $o['product_price'] ?>
                         </tr>
                         
                         <?php } ?>
                         <tr class="table-info">
                           <td><b>Total:</b></td>
-                          <td><?php echo $total;
+                          <td>CHF <?php echo $total;
                           $total = 0;
                           ?></td>
                         </tr>
