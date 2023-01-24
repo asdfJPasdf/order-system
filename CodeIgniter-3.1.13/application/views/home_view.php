@@ -11,11 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!--Left Content-->
     </div>
     <div class="col-md-1 float-right">
-	<button class="btn" onclick="return confirm('Wollen Sie sich wirklich ausloggen?')"><a href="<?php echo $url ?>home_controller/logout">Ausloggen</a> <i class="bi bi-box-arrow-right"></i></button>
+	<button class="btn" onclick="return confirm('Wollen Sie sich wirklich ausloggen?')"><a href="<?php echo $url ?>home_controller/logout">Ausloggen <i class="bi bi-box-arrow-right"></i></a></button>
     </div>
   </div>
 </div>
 	
   
-</body>
-</html>

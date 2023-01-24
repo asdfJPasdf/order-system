@@ -27,6 +27,7 @@ class home_controller extends CI_Controller
     public function index() {
 		$data = array(
            'url' => base_url(),
+		   'total'=>0,
 			
         );
 		$activ = array(
@@ -37,9 +38,10 @@ class home_controller extends CI_Controller
 			'orders'=>$this->get_orders("old"),
 			'status'=>'alte'
 		);
+		
 		$this->check_SignIn();
         $this->load->view('templates/head');
-        $this->load->view('home_view',$data);
+		$this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
 		$this->load->view('order',$old);
 		
