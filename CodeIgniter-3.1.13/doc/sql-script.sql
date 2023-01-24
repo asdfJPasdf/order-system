@@ -59,16 +59,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `order_system`.`order`
+-- Table `order_system`.`orders`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `order_system`.`order` ;
+DROP TABLE IF EXISTS `order_system`.`orders` ;
 
-CREATE TABLE IF NOT EXISTS `order_system`.`order` (
-  `order_id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `order_system`.`orders` (
+  `orders_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `status`  VARCHAR(45) NOT NULL,
+  `status` varchar(20) NOT NULL,
   `product_order_id` INT NOT NULL,
-  PRIMARY KEY (`order_id`),
+  PRIMARY KEY (`orders_id`),
   CONSTRAINT `user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `order_system`.`user` (`id_user`)
@@ -82,11 +82,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `order_system`.`product_order` ;
 
 CREATE TABLE IF NOT EXISTS `order_system`.`product_order` (
-  `order_id` INT NOT NULL,
+  `orders_id` INT NOT NULL,
   `product_id` INT NOT NULL,
-  CONSTRAINT `order_id`
-    FOREIGN KEY (`order_id`)
-    REFERENCES `order_system`.`order` (`order_id`)
+  CONSTRAINT `orders_id`
+    FOREIGN KEY (`orders_id`)
+    REFERENCES `order_system`.`orders` (`orders_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `product_id`
