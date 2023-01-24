@@ -1,12 +1,20 @@
 
 
+
+<div class="container-fluid">
 <h2><?php echo $status?> Bestellungen</h2>
-<div class="container">
+<hr>
 <div class="row">
 <?php foreach($orders as $order){?>
 <div class="col-lg-3 grid-margin stretch-card">
   
               <div class="card">
+                <div class="float-right">
+                  <div class="card-header">
+                    <button class="btn btn-primary ">Button</button>
+                  
+                  </div>
+                </div>
                 <div class="card-body">
                   <h4 class="card-title">Bestellung <?php echo $order[0]['orders_id'];?></h4>
                   <div class="table-responsive">
@@ -44,4 +52,5 @@
 <?php }?>
 </div>
 </div>
+<br>
               
