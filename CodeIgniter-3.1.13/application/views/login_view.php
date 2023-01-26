@@ -17,7 +17,7 @@
               <br>
               <input type="submit" value="Einloggen" class="btn btn-lg btn-primary btn-block text-uppercase">
               <hr class="my-4">
-              <a href="<?php echo base_url().'login_controller/signup' ?>" class="btn btn-lg btn-secondary btn-block text-uppercase">Sign up</a>
+              <a href="<?php echo base_url().'login_controller/signup' ?>" class="btn btn-lg btn-secondary btn-block text-uppercase">Account erstellen</a>
             </form>
           </div>
         </body>

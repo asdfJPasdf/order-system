@@ -34,6 +34,7 @@ DROP TABLE IF EXISTS `order_system`.`product_category` ;
 CREATE TABLE IF NOT EXISTS `order_system`.`product_category` (
   `product_category_id` INT NOT NULL AUTO_INCREMENT,
   `product_category_name` VARCHAR(45) NULL,
+  `image` VARCHAR(250) NULL,
   PRIMARY KEY (`product_category_id`))
 ENGINE = InnoDB;
 
