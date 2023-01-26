@@ -25,9 +25,14 @@ class home_controller extends CI_Controller
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
     public function index() {
+		
+		$user = $this->login_model->getUserbyID($this->session->user_id);
 		$data = array(
            'url' => base_url(),
 		   'total'=>0,
+		   'username' => $user[0]['username'],
+
+
 			
         );
 		$activ = array(
@@ -41,6 +46,7 @@ class home_controller extends CI_Controller
 		
 		$this->check_SignIn();
         $this->load->view('templates/head');
+		$this->load->view('templates/navbar',$data);
 		$this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
 		$this->load->view('order',$old);
