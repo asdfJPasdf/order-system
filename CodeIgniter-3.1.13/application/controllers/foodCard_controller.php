@@ -13,9 +13,9 @@ class foodCard_Controller extends CI_Controller
         $data = array(
             'foods'=>$this->addToArrays(),
             'colums'=> 3,
+            'controller' => $this,
         );
         
-     // echo '<pre>';print_r($this->addToArrays());exit;
         $this->load->view('templates/head');
         $this->load->view('templates/navbar', $nav);
         $this->load->view('foodCard', $data);
@@ -52,6 +52,28 @@ class foodCard_Controller extends CI_Controller
             
         }
         return $arrayResult;
+    }
+
+    /**
+     * Add item to cart
+     * check if if cart isset and check if the same order ordered several times
+     */
+    public function addToCart($id)         
+    {
+        if(isset($this->session->cart)){
+            $orders = $this->session->cart;
+            if(isset($orders[$id])){
+                $number = $orders[$id]+1;
+                array_push($orders,$id,$number);
+            }
+        }
+        else{
+
+            $orders = array($id => 1);
+        }
+        
+        $this->session->set_userdata('cart', $orders);
+        header('Location: '.base_url().'food');
     }
 
 }
