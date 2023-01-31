@@ -62,19 +62,37 @@ class foodCard_Controller extends CI_Controller
      */
     public function addToCart($id)         
     {
+        
+       //echo '<pre>';print_r($id);echo '</pre>';
         if(isset($this->session->cart)){
             $orders = $this->session->cart;
+            //echo '<pre>';print_r($orders);exit;
             if(isset($orders[$id])){
+                //echo '<pre>';print_r($orders);echo '</pre>';
+                //echo '<pre>';print_r($orders[$id]+1);exit;
                 $number = $orders[$id]+1;
-                array_push($orders,$id,$number);
+                //echo '<pre>';print_r($number);echo '</pre>';
+                
+                $test = array($id => $number);
+                $result = array_merge($orders,$test);
+              // echo '<pre>';print_r($orders);exit;
+            }
+            else{
+                $element= array($id => 1);
+                $result = array_merge($orders,$element);
             }
         }
         else{
 
-            $orders = array($id => 1);
+            $result = array($id => 1);
+           
+           // echo '<pre>';print_r($orders);exit;
         }
         
-        $this->session->set_userdata('cart', $orders);
+        $this->session->set_userdata('cart', $result);
+      echo '<pre>';print_r($this->session->all_userdata());exit;
+      //$this->session->unset_userdata('cart');
+       
         header('Location: '.base_url().'food');
     }
 
