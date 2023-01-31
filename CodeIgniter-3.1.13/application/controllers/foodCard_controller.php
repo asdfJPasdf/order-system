@@ -5,10 +5,12 @@ class foodCard_Controller extends CI_Controller
 
 
     public function index() {
+        
+		$user = $this->login_model->getUserbyID($this->session->user_id);
         $nav = array(
             'url' => base_url(),
-            'total'=>0,
-             
+            'total'=>0, 
+            'username' => $user[0]['username'], 
          );
         $data = array(
             'foods'=>$this->addToArrays(),

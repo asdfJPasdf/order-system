@@ -6,7 +6,7 @@ DROP SCHEMA IF EXISTS `order_system` ;
 -- -----------------------------------------------------
 -- Schema order_system
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `order_system` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `order_system` DEFAULT CHARACTER SET utf9 ;
 USE `order_system` ;
 
 -- -----------------------------------------------------

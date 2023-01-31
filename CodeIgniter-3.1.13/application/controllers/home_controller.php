@@ -26,10 +26,11 @@ class home_controller extends CI_Controller
 	 */
     public function index() {
 		
+		
 		$user = $this->login_model->getUserbyID($this->session->user_id);
 		$data = array(
            'url' => base_url(),
-		   'total'=>0,
+		   'total'=>0, 
 		   'username' => $user[0]['username'],
 
 

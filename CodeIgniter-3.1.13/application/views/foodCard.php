@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <style>
     .card-columns {
-    column-count: 2;
+    column-count: 3;
 }
 </style>
     
@@ -14,7 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h1 class="text-white text-center "><?php echo $food['product_category_name']?></h1>   
         </div>
     </div>
-
 <div class="card-columns p-3 mx-auto">
 <?php foreach($food['products'] as $product) {?>
     
@@ -34,5 +33,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
 <?php }?>
 </div>
+
 <?php }?> 
 

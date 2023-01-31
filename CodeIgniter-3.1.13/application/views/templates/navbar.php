@@ -59,7 +59,7 @@
       
       
     </div>
-    <a href="<?php echo $url?>/food"><button class="btn btn-primary">neue Bestellung</button></a>
+    <a href="<?php echo $url?>food"><button class="btn btn-primary">neue Bestellung</button></a>
     <!-- Right elements -->
   </div>
   </div>
