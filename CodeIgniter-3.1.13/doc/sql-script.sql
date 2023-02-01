@@ -6,7 +6,7 @@ DROP SCHEMA IF EXISTS `order_system` ;
 -- -----------------------------------------------------
 -- Schema order_system
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `order_system` DEFAULT CHARACTER SET utf9 ;
+CREATE SCHEMA IF NOT EXISTS `order_system`;
 USE `order_system` ;
 
 -- -----------------------------------------------------
@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `order_system`.`user` (
   `password` VARCHAR(45) NULL,
   `salt` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
+  `created` DATE NULL,
   PRIMARY KEY (`id_user`))
 ENGINE = InnoDB;
 

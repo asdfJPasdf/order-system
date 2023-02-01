@@ -20,6 +20,7 @@ class login_model extends CI_Model {
 			//'salt' => $this->session->salt,
 			'email' => $email,
             'role' => 'user',
+            'created' => date("Y-m-d"),
 		);
        // echo '<pre>';print_r($this->session->all_userdata());echo '</pre>';
     //echo '<pre>';print_r($data_user);exit;
@@ -30,9 +31,9 @@ class login_model extends CI_Model {
     /**
      * Get user by id
      */
-    public function getUserbyID($id)
+    public function getUserbyID()
     {
-        return $this->db->get_where('user', array('id_user' => $id))->result_array();
+        return $this->db->get_where('user', array('id_user' => $this->session->user_id))->result_array();
     }
 
 }

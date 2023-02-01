@@ -98,3 +98,4 @@ VALUES
 ("Tataki", 3, "Seared Rindfleisch, Zwiebeln, Ingwer, Sojasauce, Sesam", 15.99),
 ("Tempura", 3, "Gebackene Garnelen und Gemüse, Sojasauce, Ingwer", 14.99),
 ("Unagi Don", 3, "Gegrillter Aal, Reis, Ei, Zwiebeln, Sojasauce", 16.99);
+
