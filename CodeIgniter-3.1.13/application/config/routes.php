@@ -54,5 +54,6 @@ $route['login'] = 'login_controller';
 $route['user'] = 'user_controller';
 $route['food'] = 'foodCard_controller';
 $route['home'] = 'home_controller';
+$route['cart'] = 'cart_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

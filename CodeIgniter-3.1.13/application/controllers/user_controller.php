@@ -16,8 +16,7 @@ class user_controller extends CI_Controller {
         );
          $nav = array(
             'url' => base_url(),
-            'total'=>0, 
-            'username' => $user[0]['username'], 
+            'username' => $user[0]['username'],
         ); 
         $this->load->view('templates/head');
         $this->load->view('templates/navbar',$nav);
