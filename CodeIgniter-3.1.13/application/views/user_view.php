@@ -23,7 +23,7 @@
                 <p class="text-muted mb-0">Anzahl Bestellungen</p>
               </div>
               <div class="px-3">
-                <p class="mb-2 h5">8512</p>
+                <p class="mb-2 h5"><?php echo $favorite_food ?></p>
                 <p class="text-muted mb-0">Lieblingsgerricht</p>
               </div>
               <div>

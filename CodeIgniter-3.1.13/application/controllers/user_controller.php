@@ -5,15 +5,13 @@ class user_controller extends CI_Controller {
 
       public function index() {
         $user = $this->getUserData();
-       // echo '<pre>';print_r(date('Y-m-d'));echo '</pre>';
-        //echo '<pre>';print_r($this->getFavoriteFood());exit;
         $data = array(
             'username' => $user[0]['username'] ,
             'first_name' => $user[0]['first_name'],
             'last_name' => $user[0]['last_name'],
             'count_orders' => $this->getNumbersOfOrders(),
-             'email' => $user[0]['email'],
-            // 'favorite_food' =>,  
+            'email' => $user[0]['email'],
+            'favorite_food' => $this->getFavoriteFood(),  
             'user_since' => $this->userSince($user[0]['created']),
         );
         $this->load->view('templates/head');
@@ -36,7 +34,17 @@ class user_controller extends CI_Controller {
 
     public function getFavoriteFood()
     {
-        
+    
+      $array =  $this->home_model->getAllOrders(); 
+      $result = array();
+      foreach($array as $a) {
+        if(gettype($a['product_id']) == 'integer' ) {
+        array_push($result,$a['product_id']);
+        }
+      }
+      $idfav =  max(array_count_values($result));
+      $favFood = $this->foodCard_model->getProductByID($idfav);
+      return $favFood[0]['product_name'];
     }
 
     public function userSince($date) 

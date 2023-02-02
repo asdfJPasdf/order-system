@@ -39,10 +39,10 @@ class home_model extends CI_Model {
 
 	public function getAllOrders()
 	{
-        $this->db->where('user_id', $this->session->user_id);
-		//$this->db->join('product', 'orders.product_order_id = product_order.orders_id');
-		//$this->db->join('product', 'orders.product = product.product_id');	
-		$query = $this->db->get('orders');
-        return $query->result();
+		$this->db->select('product_order.product_id');
+		$this->db->from('orders');
+		$this->db->join('product_order', 'orders.orders_id = product_order.orders_id', 'left');
+		$this->db->where('orders.user_id', 1);
+		return $this->db->get()->result_array();
 	}
 }
