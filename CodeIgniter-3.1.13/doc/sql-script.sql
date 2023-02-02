@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `order_system`.`product` (
   `product_id` INT NOT NULL AUTO_INCREMENT,
   `product_name` VARCHAR(45) NULL,
   `product_category_id` INT NULL,
-  `product_description` VARCHAR(45) NULL,
+  `product_description` VARCHAR(100) NULL,
   `product_price` FLOAT NULL,
   PRIMARY KEY (`product_id`),
   CONSTRAINT `product_category`
@@ -69,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `order_system`.`orders` (
   `orders_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `status` varchar(20) NOT NULL,
-  `product_order_id` INT NOT NULL,
   PRIMARY KEY (`orders_id`),
   CONSTRAINT `user_id`
     FOREIGN KEY (`user_id`)
@@ -86,6 +85,7 @@ DROP TABLE IF EXISTS `order_system`.`product_order` ;
 CREATE TABLE IF NOT EXISTS `order_system`.`product_order` (
   `orders_id` INT NOT NULL,
   `product_id` INT NOT NULL,
+  `number` INT NOT NULL,
   CONSTRAINT `orders_id`
     FOREIGN KEY (`orders_id`)
     REFERENCES `order_system`.`orders` (`orders_id`)

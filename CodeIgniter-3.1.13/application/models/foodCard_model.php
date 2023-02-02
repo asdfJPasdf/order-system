@@ -21,7 +21,6 @@ class foodCard_model extends CI_Model {
 
     public function getProductByID($id)     
     {
-        $this->db->select('product_name');
         $this->db->where('product_id',$id);
         return $this->db->get('product')->result_array();
 

@@ -28,26 +28,26 @@ VALUES ('Pho Bo', 4, 'Vietnamese beef noodle soup, served with rice noodles and 
 
 INSERT INTO product(product_name, product_category_id, product_description, product_price) 
 VALUES ('Falafel Wrap', 5, 'A wrap filled with falafel balls, tahini sauce, lettuce, and tomato.', 8.99);
-INSERT INTO `orders`(user_id, status, product_order_id) 
-VALUES (1, 'active', 1);
+INSERT INTO `orders`(user_id, status) 
+VALUES (1, 'active');
 
-INSERT INTO `orders`(user_id, status, product_order_id) 
-VALUES (1, 'active', 2);
+INSERT INTO `orders`(user_id, status) 
+VALUES (1, 'active');
 
-INSERT INTO `orders`(user_id, status, product_order_id) 
-VALUES (1, 'old', 3);
+INSERT INTO `orders`(user_id, status) 
+VALUES (1, 'old');
 
-INSERT INTO `orders`(user_id, status, product_order_id) 
-VALUES (1, 'old', 4);
+INSERT INTO `orders`(user_id, status ) 
+VALUES (1, 'old');
 
-INSERT INTO `orders`(user_id, status, product_order_id) 
-VALUES (1, 'active', 5);
+INSERT INTO `orders`(user_id, status) 
+VALUES (1, 'active');
 
-INSERT INTO `product_order` (orders_id, product_id) 
-VALUES (2, 1);
+INSERT INTO `product_order` (orders_id, product_id, number) 
+VALUES (2, 1,1);
 
-INSERT INTO `product_order` (orders_id, product_id) 
-VALUES (4, 2);
+INSERT INTO `product_order` (orders_id, product_id, number) 
+VALUES (4, 2, 1);
 
 INSERT INTO `product_order` (orders_id, product_id) 
 VALUES (2, 4);

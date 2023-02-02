@@ -1,0 +1,3 @@
+bestellungen werden nicht zusammengfasst
+in datenbank werden orders_id nicht richtig geschrieben problem $id_last insert sehe projekt php-rapporte
+anzeigen anzahl der gerrichte fehlt noch

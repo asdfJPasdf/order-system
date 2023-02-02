@@ -64,7 +64,7 @@
       
       
     </div>
-    <a href="<?php echo $url?>food"><button class="btn btn-primary">neue Bestellung</button></a>
+    <a href="<?php echo $url?>cart"><button class="btn btn-primary"><i class="bi bi-cart3"></i> Warenkorb</button></a>
     <!-- Right elements -->
   </div>
   </div>

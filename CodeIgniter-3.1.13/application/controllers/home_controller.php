@@ -27,6 +27,8 @@ class home_controller extends CI_Controller
     public function index() {
 		
 		
+		$this->check_SignIn();
+		if(isset($this->session->user_id)){
 		$user = $this->login_model->getUserbyID($this->session->user_id);
 		$data = array(
            'url' => base_url(),
@@ -45,13 +47,13 @@ class home_controller extends CI_Controller
 			'status'=>'alte'
 		);
 		
-		$this->check_SignIn();
+		
         $this->load->view('templates/head');
 		$this->load->view('templates/navbar',$data);
 		$this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
 		$this->load->view('order',$old);
-		
+	}		
 		
     }
 
@@ -59,9 +61,13 @@ class home_controller extends CI_Controller
 	 * check the sign in if not sign in send the user back to login
 	 */
 	public function check_SignIn()
-	{
+	{ 
+		//echo '<pre>';print_r(!isset($this->session->user_id));exit;
+		//$this->session->unset_userdata('user_id');
+		// echo '<pre>';print_r($this->session->all_userdata());exit;
 		if(!isset($this->session->user_id)){
-			header('Location: '.base_url().'/login');
+			
+			header('Location: '.base_url().'login');
 		}
 	}
 
