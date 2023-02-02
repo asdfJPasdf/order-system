@@ -14,9 +14,6 @@
             <p class="text-muted mb-4">@<?php echo $username?> <span class="mx-2">|</span> <a
                 href="#!"><?php echo $email?></a></p>
             
-            <button type="button" class="btn btn-primary btn-rounded btn-lg">
-              Message now
-            </button>
             <div class="d-flex justify-content-between text-center mt-5 mb-2">
               <div>
                 <p class="mb-2 h5"><?php echo $count_orders?></p>

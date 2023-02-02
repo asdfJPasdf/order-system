@@ -14,8 +14,13 @@ class user_controller extends CI_Controller {
             'favorite_food' => $this->getFavoriteFood(),  
             'user_since' => $this->userSince($user[0]['created']),
         );
+         $nav = array(
+            'url' => base_url(),
+            'total'=>0, 
+            'username' => $user[0]['username'], 
+        ); 
         $this->load->view('templates/head');
-        // $this->load->view('templates/navbar');
+        $this->load->view('templates/navbar',$nav);
         $this->load->view('user_view',$data);   
     }
 
