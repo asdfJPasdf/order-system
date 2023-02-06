@@ -1,6 +1,4 @@
-<style>
     
-</style>
 <section class="h-100 h-custom bg-light" >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -29,10 +27,16 @@
                             <!-- onclick="this.parentNode.querySelector('input[type=number]').stepDown()"> --> 
                             <!-- <i class="fas fa-minus"></i> --> 
                         <!-- </button> -->
+                      <form action="<?php echo $url?>cart_controller/changeNumber/<?php echo $product['product_id']?>" method="post">
+                        <input id="form1" min="0" name="number" value="<?php echo $product['number']?>" type="number" class="form-control form-control-sm" />
 
-                        <input id="form1" min="0" name="quantity" value="<?php echo $product['number']?>" type="number"
-                            class="form-control form-control-sm" />
-
+                      </form>
+                      
+                        <script>
+                          document.getElementById("form1").onblur = function() {
+                            this.form.submit();
+                          };
+                        </script>
                         <button class="btn btn-link px-2"
                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                             <i class="fas fa-plus"></i>
@@ -41,6 +45,10 @@
                         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                         <h6 class="mb-0">CHF <?php echo $product['product_price']?></h6>
                         </div>
+
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                          <a href="<?php echo $url?>cart_controller/removeItem/<?php echo $product['product_id']?>" ><button class="btn btn-danger">Löschen</button></a>
+                          </div>
                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                         <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                         </div>

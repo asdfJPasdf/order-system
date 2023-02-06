@@ -48,8 +48,9 @@ class cart_Controller extends CI_Controller
        {
             $carts = $this->cartEntry();
             $price = 0;
+            
             foreach($carts as $cart){
-                $price += $cart['product_price'];
+                $price += $cart['product_price']* $cart['number'];
             }         
             return $price; 
        }
@@ -71,5 +72,19 @@ class cart_Controller extends CI_Controller
             $this->session->unset_userdata('cart');
 
             header('Location: '.base_url().'food');
+        }
+        
+        public function changeNumber($id){
+            $new = array($id => $this->input->post('number'));
+            $this->session->cart = array_replace($this->session->cart,$new);
+            header('Location: '.base_url().'cart');
+
+        }
+
+        public function removeItem($id){
+            $cart = $this->session->cart;
+            unset($cart[$id]);
+            $this->session->cart = $cart;
+            header('Location: '.base_url().'cart');
         }
 }
