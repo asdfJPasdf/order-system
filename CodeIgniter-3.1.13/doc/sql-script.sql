@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `order_system`.`product` (
   `product_id` INT NOT NULL AUTO_INCREMENT,
   `product_name` VARCHAR(45) NULL,
   `product_category_id` INT NULL,
-  `product_description` VARCHAR(45) NULL,
+  `product_description` VARCHAR(100) NULL,
   `product_price` FLOAT NULL,
   PRIMARY KEY (`product_id`),
   CONSTRAINT `product_category`
