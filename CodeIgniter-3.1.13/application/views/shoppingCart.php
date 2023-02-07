@@ -28,12 +28,12 @@
                             <!-- <i class="fas fa-minus"></i> --> 
                         <!-- </button> -->
                       <form action="<?php echo $url?>cart_controller/changeNumber/<?php echo $product['product_id']?>" method="post">
-                        <input id="form1" min="0" name="number" value="<?php echo $product['number']?>" type="number" class="form-control form-control-sm" />
+                        <input id="form<?php echo $product['product_id']?>" min="0" name="number" value="<?php echo $product['number']?>" type="number" class="form-control form-control-sm" />
 
                       </form>
                       
                         <script>
-                          document.getElementById("form1").onblur = function() {
+                          document.getElementById("form<?php echo $product['product_id']?>").onblur = function() {
                             this.form.submit();
                           };
                         </script>
