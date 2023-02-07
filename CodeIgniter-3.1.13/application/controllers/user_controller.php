@@ -30,7 +30,8 @@ class user_controller extends CI_Controller {
 
     public function getNumbersOfOrders()
     {
-        $orders = $this->home_model->getAllOrders();
+        
+        $orders = $this->home_model->getNumOrders();
         return count($orders);
 
             
@@ -43,10 +44,13 @@ class user_controller extends CI_Controller {
       $result = array();
       foreach($array as $a) {
         if(gettype($a['product_id']) == 'integer' ) {
-        array_push($result,$a['product_id']);
+            for($i = 1; $i <= $a['number']; $i++){
+                array_push($result,$a['product_id']);
+            }
         }
       }
-      $idfav =  max(array_count_values($result));
+      $max = max(array_count_values($result));
+      $idfav =   array_search($max,array_count_values($result));
       $favFood = $this->foodCard_model->getProductByID($idfav);
       return $favFood[0]['product_name'];
     }

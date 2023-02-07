@@ -86,7 +86,7 @@ class home_controller extends CI_Controller
 	 */
 	public function get_orders($status)
 	{
-		$orders = $this->home_model->get_active_orders($status);
+		$orders = $this->home_model->get_ordersbyStatus($status);
 		
 		$sortet_orders = array();
 		foreach($orders as $order){

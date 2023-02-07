@@ -21,7 +21,7 @@
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-lg-0" href="<?php echo $url ?>">
         <img
-        <?php if(str_contains($_SERVER['REQUEST_URI'], 'index.php')){?>
+        <?php if(str_contains($_SERVER['REQUEST_URI'], 'index.php/')){?>
           src="../Items/png/logo-no-background-only-logo.png"
           <?php } else {?>
             src="Items/png/logo-no-background-only-logo.png"

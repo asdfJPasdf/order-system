@@ -12,7 +12,8 @@
                     <h1 class="fw-bold mb-0 text-black">Warenkorb</h1>
                     <h6 class="mb-0 text-muted"><?php echo $number?> Produkte</h6>
                   </div>
-                  <?php foreach($products as $product){?>
+                  <?php if(!empty($products)) {
+                   foreach($products as $product){?>
                     <hr class="my-4">
 
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
@@ -53,14 +54,24 @@
                         <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                         </div>
                     </div>
-                <?php }?>
-
-                  <hr class="my-4">
 
                   <div class="pt-5">
                     <h6 class="mb-0"><a href="<?php echo $url?>food" class="text-body"><i
                           class="fas fa-long-arrow-alt-left me-2"></i>Zurück zur Speisekarte</a></h6>
                   </div>
+                <?php }
+                }
+                else {
+                ?>
+                <p>Warenkorb ist Leer! </p>
+                
+                  <hr class="my-4">
+
+                  <div class="pt-5">
+                    <h6 class="mb-0"><a href="<?php echo $url?>food" class="text-body"><i
+                          class="fas fa-long-arrow-alt-left me-2"></i>Etwas in den Warenkorb hinzufügen</a></h6>
+                  </div>
+                  <?php }?>
                 </div>
               </div>
               <div class="col-lg-4 bg-grey">

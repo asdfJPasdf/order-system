@@ -5,7 +5,7 @@ class home_model extends CI_Model {
 	/**
 	 * Get all order with the status active
 	 */
-	function get_active_orders($status)
+function get_ordersbyStatus($status)
 	{  
         // //echo '<pre>';print_r($this->session->all_userdata());exit;
 		// $this->db->select('orders.*, product.product_name, product.product_price');
@@ -18,7 +18,7 @@ class home_model extends CI_Model {
 
 
 		return $this->db->query("
-		Select orders.*, product.product_name, product.product_price from orders,product,product_order
+		Select orders.*, product.product_name, product.product_price, product_order.number from orders,product,product_order
 		where product_order.orders_id = orders.orders_id
 		AND orders.status = '".$status."'
 		AND orders.user_id = ".$this->session->user_id."
@@ -40,9 +40,17 @@ class home_model extends CI_Model {
 	public function getAllOrders()
 	{
 		$this->db->select('product_order.product_id');
+		$this->db->select('product_order.number');
 		$this->db->from('orders');
 		$this->db->join('product_order', 'orders.orders_id = product_order.orders_id', 'left');
-		$this->db->where('orders.user_id', 1);
+		$this->db->where('orders.user_id', $this->session->user_id);
+		return $this->db->get()->result_array();
+	}
+
+	public function getNumOrders(){
+
+		$this->db->from('orders');
+		$this->db->where('orders.user_id', $this->session->user_id);
 		return $this->db->get()->result_array();
 	}
 }
