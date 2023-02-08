@@ -11,7 +11,6 @@ function __construct() {
 
   public function index() {
 
-    echo '<pre>';print_r($this->kitchen_model->getAllactiveOrders());exit;
 		$user = $this->login_model->getUserbyID($this->session->user_id);
         $this->checkUserRole($user);
 		$data = array(
@@ -32,6 +31,19 @@ function __construct() {
         if($user[0]['role'] == 'user'){
 			header('Location: '.base_url());
         }
+    }
+
+    public function sortArray(){
+        $array = $this->kitchen_model->getAllactiveOrders();
+        $sortetArray = array();
+         foreach ($array as $item) {
+        if (!isset($sortetArray[$item['orders_id']])) {
+            $sortetArray[$item['orders_id']] = array();
+        }
+
+        $sortetArray[$item['orders_id']][] = $item;
+    }
+    return $sortetArray;
     }
 
 

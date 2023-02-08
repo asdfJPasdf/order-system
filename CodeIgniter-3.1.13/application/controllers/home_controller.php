@@ -51,7 +51,7 @@ class home_controller extends CI_Controller
 		
         $this->load->view('templates/head');
 		$this->load->view('templates/navbar',$data);
-		$this->load->view('alert');
+		//$this->load->view('alert');
 		$this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
 		$this->load->view('order',$old);

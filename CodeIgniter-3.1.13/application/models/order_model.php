@@ -12,6 +12,7 @@ class order_model extends CI_Model {
         $order = array(
             'user_id' => $user_id,
             'status' => 'active',
+            'created' => date("Y-m-d H:i:s"),
         );
         $querry_order = $this->db->insert('orders', $order);
     }
@@ -25,6 +26,9 @@ class order_model extends CI_Model {
         );
         $querry_productOrder = $this->db->insert('product_order', $product_order);
 
+        if(!isset($querry_order)){
+            $querry_order = TRUE;
+        }
         return array($querry_order, $querry_productOrder,$order_id);
     }
 

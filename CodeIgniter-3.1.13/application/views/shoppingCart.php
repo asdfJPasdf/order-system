@@ -55,12 +55,14 @@
                         </div>
                     </div>
 
+
+                <?php }?>
+
                   <div class="pt-5">
                     <h6 class="mb-0"><a href="<?php echo $url?>food" class="text-body"><i
                           class="fas fa-long-arrow-alt-left me-2"></i>Zurück zur Speisekarte</a></h6>
                   </div>
-                <?php }
-                }
+          <?php }
                 else {
                 ?>
                 <p>Warenkorb ist Leer! </p>

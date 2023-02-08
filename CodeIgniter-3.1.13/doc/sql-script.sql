@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `order_system`.`user` (
   `password` VARCHAR(45) NULL,
   `salt` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
-  `created` DATE NULL,
+  `created` TIMESTAMP NULL,
   PRIMARY KEY (`id_user`))
 ENGINE = InnoDB;
 
@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `order_system`.`orders` (
   `orders_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `status` varchar(20) NOT NULL,
+  `created` TIMESTAMP NULL,
   PRIMARY KEY (`orders_id`),
   CONSTRAINT `user_id`
     FOREIGN KEY (`user_id`)

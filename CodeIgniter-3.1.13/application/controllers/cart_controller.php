@@ -72,8 +72,7 @@ class cart_Controller extends CI_Controller
             $order_id = 0;
             $isFirst = TRUE;
             foreach($cart as $key => $value) {
-                
-                $insert = $this->order_model->sendOrder($user_id,$key,$value,$order_id, $isFirst); 
+                $insert = $this->order_model->sendOrder($user_id,$key,$value,$order_id, $isFirst);
                 $order_id = $insert[2];
                 $isFirst = FALSE;
 
