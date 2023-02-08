@@ -25,7 +25,8 @@ class home_controller extends CI_Controller
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
     public function index() {
-		
+	
+	
 		
 		$this->check_SignIn();
 		if(isset($this->session->user_id)){
@@ -77,7 +78,7 @@ class home_controller extends CI_Controller
 	public function logout()
 	{
 		$this->session->unset_userdata('user_id');
-		header('Location: '.base_url().'/login');
+		header('Location: '.base_url().'login');
 	}
 
 
@@ -86,6 +87,8 @@ class home_controller extends CI_Controller
 	 */
 	public function get_orders($status)
 	{
+
+			
 		$orders = $this->home_model->get_ordersbyStatus($status);
 		
 		$sortet_orders = array();

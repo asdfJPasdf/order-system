@@ -57,7 +57,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>Eingeloggt als: <?php echo $username?></li>
             <li><a class="dropdown-item" href="<?php echo $url ?>user"><button class="btn"><i class="bi bi-person-circle"></i> Profile anzeigen</button></a></li>
-            <li><a class="dropdown-item" href="<?php echo $url ?>login"><button class="btn" onclick="return confirm('Wollen Sie sich wirklich ausloggen?')">Ausloggen <i class="bi bi-box-arrow-right"></i></button></a></li>
+            <li><a class="dropdown-item" href="<?php echo $url ?>home_controller/logout"><button class="btn" onclick="return confirm('Wollen Sie sich wirklich ausloggen?')">Ausloggen <i class="bi bi-box-arrow-right"></i></button></a></li>
           </ul>
         </li>
        
