@@ -24,10 +24,7 @@
                         <h6 class="text-muted"><?php echo $product['product_description']?></h6>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <!-- <button class="btn btn-link px-2" -->
-                            <!-- onclick="this.parentNode.querySelector('input[type=number]').stepDown()"> --> 
-                            <!-- <i class="fas fa-minus"></i> --> 
-                        <!-- </button> -->
+                       
                       <form action="<?php echo $url?>cart_controller/changeNumber/<?php echo $product['product_id']?>" method="post">
                         <input id="form<?php echo $product['product_id']?>" min="0" name="number" value="<?php echo $product['number']?>" type="number" class="form-control form-control-sm" />
 
@@ -86,22 +83,44 @@
                     <h5>CHF <?php echo $whole_price?></h5>
                   </div>
 
-                  <h5 class="text-uppercase mb-3">Shipping</h5>
+                  <h5 class="text-uppercase mb-3">Lieferart</h5>
 
                   <div class="mb-4 pb-2">
-                    <select class="select">
-                      <option value="1">Standard-Delivery- €5.00</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                      <option value="4">Four</option>
-                    </select>
+                    <form action="<?php echo $url?>cart_controller/deliveryOrder" method="post">
+                      <select class="select" name="delivery" id="delivery">
+                        <option value="1" <?php echo ($delivery == 1)?"selected" : "" ?>>Nachhauselieferung +€5.00</option>
+                        <option value="2" <?php echo ($delivery == 2)?"selected" : "" ?>>An den Tisch bestellen</option>
+                      </select>
+                    </form>
                   </div>
+                  
+                  <script>
+                     document.getElementById("delivery").onblur = function() {
+                     this.form.submit();
+                     };
+                  </script>
+                  <?php if($delivery == 2){?>
+                      <form action="<?php echo $url?>cart_controller/addTableNumber" method="post">
+                        <h5 class="text-uppercase mb-3">Tischnummer</h5>
+                        <input type="number" name="table" id="table" value="<?php echo isset($table)? $table: '' ?>">
+                      </form>
+                  <?php } ?>
+                  <?php if($delivery == 1){ ?>
+                    <h6>Die Bestellung wird an diese Adresse gelierfert <b><?php echo $address?></b>.</h6>
+
+                  <?php } ?>
+
+                  <script>
+                     document.getElementById("table").onblur = function() {
+                     this.form.submit();
+                     };
+                  </script>
 
                   <hr class="my-4">
 
                   <div class="d-flex justify-content-between mb-5">
                     <h5 class="text-uppercase">Gesamterpreis</h5>
-                    <h5>CHF 137.00</h5>
+                    <h5>CHF <?php echo ($delivery == 1)?$whole_price + 5 : $whole_price?></h5>
                   </div>
 
                     <form action="<?php echo base_url()."cart_controller/sendOrder"?>" method="post"> 

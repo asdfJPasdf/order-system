@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `order_system`.`user` (
   `username` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
+  `address` VARCHAR(100) NULL,
   `salt` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
   `created` TIMESTAMP NULL,
@@ -69,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `order_system`.`orders` (
   `orders_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `status` varchar(20) NOT NULL,
+  `table` INT NULL,
   `created` TIMESTAMP NULL,
   PRIMARY KEY (`orders_id`),
   CONSTRAINT `user_id`

@@ -68,17 +68,16 @@ function __construct() {
     public function newUser(){
         
         if($this->samePasswort()){
-        $first_name = $this->input->post('first_name');
-        $last_name = $this->input->post('last_name');
-       // $salt = $this->getSalt();
-       // $this->session->set_userdata('salt',$salt);
-        $password = $this->checkPassword($this->input->post('password'));
-        $email = $this->input->post('email');
-        $username = $this->input->post('username');
-        //echo '<pre>';print_r($this->session->all_userdata());echo '</pre>';
-        //echo '<pre>';print_r(array($first_name,$last_name,$username, $password,$email));exit;
-        $this->login_model->addUser($first_name,$last_name,$username, $password,$email);
-        header('Location:'.base_url().'login');
+            $first_name = $this->input->post('first_name');
+            $last_name = $this->input->post('last_name');
+            $address = $this->input->post('address');
+        // $salt = $this->getSalt();
+        // $this->session->set_userdata('salt',$salt);
+            $password = $this->checkPassword($this->input->post('password'));
+            $email = $this->input->post('email');
+            $username = $this->input->post('username');
+            $this->login_model->addUser($first_name,$last_name,$username, $password,$email, $address);
+            header('Location:'.base_url().'login');
 
         }
 

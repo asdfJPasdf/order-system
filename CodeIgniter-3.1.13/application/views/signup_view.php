@@ -35,25 +35,37 @@
       Bitte geben Sie eine E-mail ein.
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-6">
+    <label for="validationServer03" class="form-label">Adesse</label>
+    <input type="text" class="form-control" id="address" name="address"  required>
+    <div id="validationServer03Feedback" class="invalid-feedback">
+      Bitte geben Sie eine Adresse ein.
+    </div>
+  </div>
+  <div class="col-md-5">
     <label for="validationServer04" class="form-label">Passwort</label>
     <input type="password" class="form-control" id="password" name="password"  required>
     <div id="validationServer04Feedback" class="invalid-feedback">
       Bitte geben Sie ein Passwort ein.
     </div>
   </div>
-  <div class="col-md-3">
-    <label for="validationServer05" class="form-label">Passwort bestätigen</label>
+  <div class="col-md-5">
+    <label for="validationServer05" class="form-label">Passwort wiederholen</label>
     <input type="password" class="form-control" id="passwordConfirm" name="confirm_password"  required>
     <div id="validationServer05Feedback" class="invalid-feedback">
       Bitte bestätigen Sie das Password.
     </div>
   </div>
   
-  <div class="col-12">
-    <button class="btn btn-primary" type="submit">Registrieren</button>
+  <div class="col-md-4">
+    <button class="btn btn-primary" type="submit">Registrieren</button> 
   </div>
+<div class="col-md-6">
+    <a href="<?php echo base_url()?>login" class="btn btn-link">zum Login</a>
+</div>
 </form>
+
+
       </div>
     </div>
   </div>

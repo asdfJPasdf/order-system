@@ -18,19 +18,26 @@ function __construct() {
 		   'total'=>0, 
 		   'username' => $user[0]['username'],
            'isChef' => $user[0]['role'] == 'chef',
-			
+           'address' => $user[0]['address'],
         );
 
         $orders = array(
-            'orders' => $this->sortArray(),
-            'controller' => $this,
-            'url' => base_url(),
+           'orders' => $this->sortArray($this->kitchen_model->getAllactiveOrders()),
+           'controller' => $this,
+           'label' => 'offen',
+           'open' => TRUE,
+        );
+
+        $progress = array(
+            'orders' => $this->sortArray($this->kitchen_model->getAllInProgressOrders()),
+            'label' => 'in Bearbeitung',
+            'open' => FALSE,
         );
 
         $this->load->view('templates/head');
 		$this->load->view('templates/navbar',$data);
         $this->load->view('orders_kitchen',$orders);
-
+        $this->load->view('orders_kitchen', $progress);
 
     }
 
@@ -41,8 +48,8 @@ function __construct() {
         }
     }
 
-    public function sortArray(){
-        $array = $this->kitchen_model->getAllactiveOrders();
+    public function sortArray($array){
+        
         $sortetArray = array();
          foreach ($array as $item) {
         if (!isset($sortetArray[$item['orders_id']])) {
@@ -63,13 +70,22 @@ function __construct() {
         return array($timeOnly, $timeDiff->h, $timeDiff->i);
     }
 
-    public function changeStatus($id){
+    public function changeStatus($id, $status){
 
-        $this->kitchen_model->changeStatus($id);
+        $this->kitchen_model->changeStatus($id, $status);
 		header('Location: '.base_url().'kitchen');
 
     }
+    public function showDelivery($table, $address){
+        
+        if($table == 0){
+            return "Lieferung nach: ".$user[0]['address'];
+        }
+        else{
+            return "An Tischnummer: ".$table;
+        }
 
+    }
 
 
 }

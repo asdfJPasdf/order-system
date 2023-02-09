@@ -48,6 +48,12 @@ class home_controller extends CI_Controller
 			'orders'=>$this->get_orders("old"),
 			'status'=>'alte'
 		);
+
+		$progress = array(
+			'orders' => $this->get_orders("inprogress"),
+			'status' => 'bearbeitete',
+
+		);
 		$alert = array(
 			'alert' => $this->session->alert,
 		);
@@ -58,6 +64,7 @@ class home_controller extends CI_Controller
 		$this->load->view('alert', $alert);
 		$this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
+		$this->load->view('order', $progress);
 		$this->load->view('order',$old);
 	}		
 		

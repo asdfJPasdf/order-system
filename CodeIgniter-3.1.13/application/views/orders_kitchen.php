@@ -1,6 +1,6 @@
 <br>
 <div class="container-fluid">
-<h2>Bestellungen</h2>
+<h2>Bestellungen <?php echo $label?></h2>
 <hr>
 <div class="row">
 <?php foreach($orders as $order){?>
@@ -10,6 +10,7 @@
               <h4 class="card-title">Bestellung <?php echo $order[0]['orders_id'];?></h4>
               <p>Bestellt am <?php echo $controller->calcTime($order[0]['created'])[0]?> </p>
               <p>vor <?php   echo ($controller->calcTime($order[0]['created'])[1] != 0)? $controller->calcTime($order[0]['created'])[1]." Stunden und ". $controller->calcTime($order[0]['created'])[2]." Minuten" : $controller->calcTime($order[0]['created'])[2]." Minuten"?></p>
+              <p><?php echo $controller->showDelivery($order[0]['table'],$address);?></p>
             </div>
                 <div class="card-body">
                 
@@ -35,7 +36,14 @@
                       </tbody>
                       
                     </table>
-                    <a href="<?php $url?>kitchen_controller/changeStatus/<?php echo $order[0]['orders_id']?>"><button class="btn btn-primary"> Erledigt</button></a>
+
+                    <?php if($open){?>
+                    <a href="<?php $url?>kitchen_controller/changeStatus/<?php echo $order[0]['orders_id']?>/inprogress"><button class="btn btn-primary"> Starten</button></a>
+                    <?php }
+                    else{
+                    ?>
+                    <a href="<?php $url?>kitchen_controller/changeStatus/<?php echo $order[0]['orders_id']?>/old"><button class="btn bt-secondary"> Erledigt</button></a>
+                    <?php } ?>
                   </div>
                 </div>
               </div>

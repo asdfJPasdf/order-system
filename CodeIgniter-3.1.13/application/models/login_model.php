@@ -10,13 +10,14 @@ class login_model extends CI_Model {
         return $query->result();
     }
 
-    public function addUser($first_name,$last_name,$username,$password/*,$salt*/,$email)
+    public function addUser($first_name,$last_name,$username,$password/*,$salt*/,$email, $address)
     {
         $data_user = array(
 			'first_name' => $first_name,
 			'last_name'  => $last_name,
 			'password' => $password,
 			'username'	=>	$username,
+            'address' => $address,
 			//'salt' => $this->session->salt,
 			'email' => $email,
             'role' => 'user',

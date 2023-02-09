@@ -17,12 +17,16 @@ class cart_Controller extends CI_Controller
                 'products' => $this->cartEntry(),
                 'whole_price' => $this->calcPrice(),
                 'number' => $this->countItems(),
+                'delivery' => $this->session->delivery,
+                'table' => $this->session->table,
+                'address' => $user[0]['address'],
 
             );
 
 		    $alert = array(
 			    'alert' => $this->session->alert,
 		    );
+
             $this->load->view('templates/head');
             $this->load->view('templates/navbar', $nav);
             $this->load->view('alert', $alert);
@@ -75,10 +79,11 @@ class cart_Controller extends CI_Controller
         {
             $cart = $this->session->cart;
             $user_id = $this->session->user_id;
+            $table = isset($this->session->table)? $this->session->table :0;
             $order_id = 0;
             $isFirst = TRUE;
             foreach($cart as $key => $value) {
-                $insert = $this->order_model->sendOrder($user_id,$key,$value,$order_id, $isFirst);
+                $insert = $this->order_model->sendOrder($user_id,$key,$value,$order_id, $isFirst, $table);
                 $order_id = $insert[2];
                 $isFirst = FALSE;
 
@@ -103,6 +108,21 @@ class cart_Controller extends CI_Controller
             unset($cart[$id]);
             $this->session->cart = $cart;
             $this->session->set_flashdata('alert', 3);
+            header('Location: '.base_url().'cart');
+        }
+
+        public function deliveryOrder(){
+
+            $delivery = $this->input->post('delivery');
+            $this->session->delivery = $delivery;
+            header('Location: '.base_url().'cart');
+
+        }
+
+        public function addTableNumber(){
+                        
+            $table = $this->input->post('table');
+            $this->session->table = $table;
             header('Location: '.base_url().'cart');
         }
 }
