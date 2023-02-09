@@ -8,7 +8,9 @@ class cart_Controller extends CI_Controller
             $user = $this->login_model->getUserbyID();
             $nav = array(
                 'url' => base_url(),
-                'username' => $user[0]['username'], 
+                'username' => $user[0]['username'],
+                'isChef' => $user[0]['role'] == 'chef',
+                
             );
             $data = array(
                 'url' =>  base_url(),
@@ -17,9 +19,13 @@ class cart_Controller extends CI_Controller
                 'number' => $this->countItems(),
 
             );
-    
+
+		    $alert = array(
+			    'alert' => $this->session->alert,
+		    );
             $this->load->view('templates/head');
             $this->load->view('templates/navbar', $nav);
+            $this->load->view('alert', $alert);
             $this->load->view('shoppingCart',$data);
         
        }
@@ -79,7 +85,7 @@ class cart_Controller extends CI_Controller
             }
             
             $this->session->unset_userdata('cart');
-
+            $this->session->set_flashdata('alert', 1);
             header('Location: '.base_url());
         }
         
@@ -96,6 +102,7 @@ class cart_Controller extends CI_Controller
             $cart = $this->session->cart;
             unset($cart[$id]);
             $this->session->cart = $cart;
+            $this->session->set_flashdata('alert', 3);
             header('Location: '.base_url().'cart');
         }
 }

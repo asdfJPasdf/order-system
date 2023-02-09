@@ -7,12 +7,6 @@
 <div class="col-lg-2 grid-margin stretch-card">
   
               <div class="card">
-                <!-- <div class="float-right">
-                   <div class="card-header">
-                     <button class="btn btn-primary ">Button</button> 
-                  
-                  </div> 
-                </div> -->
                 <div class="card-body">
                   <h4 class="card-title">Bestellung <?php echo $order[0]['orders_id'];?></h4>
                   <div class="table-responsive">

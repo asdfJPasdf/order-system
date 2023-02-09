@@ -35,6 +35,7 @@ class home_controller extends CI_Controller
            'url' => base_url(),
 		   'total'=>0, 
 		   'username' => $user[0]['username'],
+			'isChef' => $user[0]['role'] == 'chef',
 
 
 			
@@ -47,11 +48,14 @@ class home_controller extends CI_Controller
 			'orders'=>$this->get_orders("old"),
 			'status'=>'alte'
 		);
+		$alert = array(
+			'alert' => $this->session->alert,
+		);
 		
 		
         $this->load->view('templates/head');
 		$this->load->view('templates/navbar',$data);
-		//$this->load->view('alert');
+		$this->load->view('alert', $alert);
 		$this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
 		$this->load->view('order',$old);

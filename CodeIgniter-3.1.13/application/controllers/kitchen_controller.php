@@ -17,11 +17,19 @@ function __construct() {
            'url' => base_url(),
 		   'total'=>0, 
 		   'username' => $user[0]['username'],
+           'isChef' => $user[0]['role'] == 'chef',
 			
+        );
+
+        $orders = array(
+            'orders' => $this->sortArray(),
+            'controller' => $this,
+            'url' => base_url(),
         );
 
         $this->load->view('templates/head');
 		$this->load->view('templates/navbar',$data);
+        $this->load->view('orders_kitchen',$orders);
 
 
     }
@@ -46,6 +54,21 @@ function __construct() {
     return $sortetArray;
     }
 
+    public function calcTime($time){
+        $timeOnly = date_format(date_create($time), "H.i");
+        $timeCreated = new DateTime($time);
+        $dateNow =  new DateTime(date('Y-m-d H:i:s'));
+        $timeDiff = $timeCreated->diff($dateNow);
+
+        return array($timeOnly, $timeDiff->h, $timeDiff->i);
+    }
+
+    public function changeStatus($id){
+
+        $this->kitchen_model->changeStatus($id);
+		header('Location: '.base_url().'kitchen');
+
+    }
 
 
 

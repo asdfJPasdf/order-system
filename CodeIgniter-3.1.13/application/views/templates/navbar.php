@@ -39,6 +39,11 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo $url ?>food">Speisekarte</a>
         </li>
+      <?php if($isChef){?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo $url ?>kitchen">Küchenansicht</a>
+        </li>
+        <?php } ?>
       </ul>
       <!-- Left links -->
     </div>

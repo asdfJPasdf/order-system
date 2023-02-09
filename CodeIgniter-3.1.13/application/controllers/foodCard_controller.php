@@ -9,16 +9,22 @@ class foodCard_Controller extends CI_Controller
 		$user = $this->login_model->getUserbyID($this->session->user_id);
         $nav = array(
             'url' => base_url(),
-            'username' => $user[0]['username'], 
+            'username' => $user[0]['username'],
+            'isChef' => $user[0]['role'] == 'chef',
          );
         $data = array(
             'foods'=>$this->addToArrays(),
             'colums'=> 3,
             'controller' => $this,
         );
+
+		$alert = array(
+			'alert' => $this->session->alert,
+		);
         
         $this->load->view('templates/head');
         $this->load->view('templates/navbar', $nav);
+        $this->load->view('alert', $alert);
         $this->load->view('foodCard', $data);
     }
 
@@ -71,6 +77,7 @@ class foodCard_Controller extends CI_Controller
         }
 
         $this->session->set_userdata('cart', $cart);
+        $this->session->set_flashdata('alert',2);
  
         header('Location: '.base_url().'food');
     }

@@ -17,6 +17,7 @@ class user_controller extends CI_Controller {
          $nav = array(
             'url' => base_url(),
             'username' => $user[0]['username'],
+            'isChef' => $user[0]['role'] == 'chef',
         ); 
         $this->load->view('templates/head');
         $this->load->view('templates/navbar',$nav);

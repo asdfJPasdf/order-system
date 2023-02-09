@@ -15,4 +15,14 @@ class kitchen_model extends CI_Model {
 		// $this->db->join('product_order', 'orders.orders_id = product_order.orders_id', 'left');
 		// return $this->db->get()->result_array();
     }
+
+
+	public function changeStatus($id){
+		$status = array(
+			'status' => 'old',
+		);
+
+		$this->db->where('orders_id', $id);
+		$this->db->update('orders', $status);
+	}
 }
