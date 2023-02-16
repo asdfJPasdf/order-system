@@ -78,6 +78,7 @@ function __construct() {
     }
     public function showDelivery($table, $address){
         
+		$user = $this->login_model->getUserbyID($this->session->user_id);
         if($table == 0){
             return "Lieferung nach: ".$user[0]['address'];
         }

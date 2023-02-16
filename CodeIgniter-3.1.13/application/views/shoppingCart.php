@@ -12,9 +12,10 @@
                     <h1 class="fw-bold mb-0 text-black">Warenkorb</h1>
                     <h6 class="mb-0 text-muted"><?php echo $number?> Produkte</h6>
                   </div>
+                    <hr class="my-4">
                   <?php if(!empty($products)) {
                    foreach($products as $product){?>
-                    <hr class="my-4">
+                    
 
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                         <div class="col-md-2 col-lg-2 col-xl-2">
@@ -55,11 +56,15 @@
 
                 <?php }?>
 
+                    <hr class="my-4">
                   <div class="pt-5">
                     <h6 class="mb-0"><a href="<?php echo $url?>food" class="text-body"><i
                           class="fas fa-long-arrow-alt-left me-2"></i>Zurück zur Speisekarte</a></h6>
                   </div>
+
           <?php }
+
+
                 else {
                 ?>
                 <p>Warenkorb ist Leer! </p>
