@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home_controller';
 $route['kitchen'] = "kitchen_controller";
 $route['login'] = 'login_controller';
+$route['signup'] = 'login_controller/signup';
 $route['user'] = 'user_controller';
 $route['food'] = 'foodCard_controller';
 $route['home'] = 'home_controller';

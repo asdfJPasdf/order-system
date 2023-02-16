@@ -93,7 +93,7 @@
                   <div class="mb-4 pb-2">
                     <form action="<?php echo $url?>cart_controller/deliveryOrder" method="post">
                       <select class="select" name="delivery" id="delivery">
-                        <option value="1" <?php echo ($delivery == 1)?"selected" : "" ?>>Nachhauselieferung +€5.00</option>
+                        <option value="1" <?php echo ($delivery == 1)?"selected" : "" ?>>Nachhause Lieferung +CHF 5.00</option>
                         <option value="2" <?php echo ($delivery == 2)?"selected" : "" ?>>An den Tisch bestellen</option>
                       </select>
                     </form>

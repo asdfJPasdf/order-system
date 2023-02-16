@@ -9,17 +9,19 @@ function __construct() {
 
   public function index() {
 
-        $data = array(
+        $alert = array(
+            'alert' => $this->session->alert,
             
         );
         $this->load->view('templates/head');
+        $this->load->view('alert', $alert);
 
         $this->form_validation->set_rules('username', 'Benutzername', 'required');
         $this->form_validation->set_rules('password', 'Passwort', 'required');
 
         if ($this->form_validation->run() == FALSE) {
 
-            $this->load->view('login_view', $data);
+            $this->load->view('login_view');
         }
        
     }
@@ -36,7 +38,7 @@ function __construct() {
                     header('Location: '.base_url());
                 }
                 else{
-                    
+                    $this->session->set_flashdata('alert',4);
                     header('Location: '.base_url().'login');
                 }
         

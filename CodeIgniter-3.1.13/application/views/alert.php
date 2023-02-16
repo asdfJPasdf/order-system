@@ -16,4 +16,11 @@
 <div class="alert alert-info" role="alert">
   Der Artikel wurde erfolgreich aus dem Warenkorb gelöscht!
 </div>
+<?php } 
+
+    if($alert == 4) {
+?>
+<div class="alert alert-danger" role="alert">
+  Der Benutzername oder Passwort stimmen nicht !
+</div>
 <?php } ?>

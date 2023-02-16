@@ -4,7 +4,7 @@ class cart_Controller extends CI_Controller
 {
 
         public function index() {
-
+            
             $user = $this->login_model->getUserbyID();
             $nav = array(
                 'url' => base_url(),
@@ -27,6 +27,7 @@ class cart_Controller extends CI_Controller
 			    'alert' => $this->session->alert,
 		    );
 
+//echo '<pre>';print_r($this->countItems());echo '</pre>';
             $this->load->view('templates/head');
             $this->load->view('templates/navbar', $nav);
             $this->load->view('alert', $alert);
@@ -70,8 +71,14 @@ class cart_Controller extends CI_Controller
 
        public function countItems()
        {
-        if( !empty($this->cartEntry()))
-            return count($this->cartEntry());
+       $items =  $this->cartEntry();
+       $count = 0;
+        if( !empty($this->cartEntry())){
+            foreach($items as $item) {
+                $count += $item['number'];
+            }
+            return $count;
+        }
         }
 
 
