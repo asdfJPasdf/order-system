@@ -107,7 +107,7 @@
                   <?php if($delivery == 2){?>
                       <form action="<?php echo $url?>cart_controller/addTableNumber" method="post">
                         <h5 class="text-uppercase mb-3">Tischnummer</h5>
-                        <input type="number" name="table" id="table" value="<?php echo isset($table)? $table: '' ?>">
+                        <input type="number" min="1" name="table" id="table" value="<?php echo isset($table)? $table: '' ?>">
                       </form>
                   <?php } ?>
                   <?php if($delivery == 1){ ?>
