@@ -27,7 +27,6 @@ class cart_Controller extends CI_Controller
 			    'alert' => $this->session->alert,
 		    );
 
-//echo '<pre>';print_r($this->countItems());echo '</pre>';
             $this->load->view('templates/head');
             $this->load->view('templates/navbar', $nav);
             $this->load->view('alert', $alert);

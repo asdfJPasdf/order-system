@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS `order_system`.`user` (
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
   `address` VARCHAR(100) NULL,
-  `salt` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
   `created` TIMESTAMP NULL,
   PRIMARY KEY (`id_user`))

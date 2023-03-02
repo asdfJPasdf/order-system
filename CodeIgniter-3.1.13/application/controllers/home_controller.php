@@ -62,7 +62,6 @@ class home_controller extends CI_Controller
         $this->load->view('templates/head');
 		$this->load->view('templates/navbar',$data);
 		$this->load->view('alert', $alert);
-		$this->load->view('home_view',$data);
 		$this->load->view('order',$activ);
 		$this->load->view('order', $progress);
 		$this->load->view('order',$old);
@@ -75,9 +74,6 @@ class home_controller extends CI_Controller
 	 */
 	public function check_SignIn()
 	{ 
-		//echo '<pre>';print_r(!isset($this->session->user_id));exit;
-		//$this->session->unset_userdata('user_id');
-		// echo '<pre>';print_r($this->session->all_userdata());exit;
 		if(!isset($this->session->user_id)){
 			
 			header('Location: '.base_url().'login');

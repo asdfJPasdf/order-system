@@ -32,7 +32,7 @@ function __construct() {
         $user = $this->login_model->get_users($this->input->post('username'));
 
 
-                if($this->checkPassword($inputPassword/*,$user[0]->salt*/) == $user[0]->password){
+                if($this->checkPassword($inputPassword) == $user[0]->password){
                     $id = $user[0]->id_user;
                     $this->session->set_userdata('user_id', $id);
                     header('Location: '.base_url());
@@ -44,9 +44,9 @@ function __construct() {
         
     }  
 
-    public function checkPassword($pw, /*$salt*/)
+    public function checkPassword($pw)
     {
-    return md5($pw/*.$salt*/);
+    return md5($pw);
     }
 
     public function samePasswort()
@@ -73,8 +73,6 @@ function __construct() {
             $first_name = $this->input->post('first_name');
             $last_name = $this->input->post('last_name');
             $address = $this->input->post('address');
-        // $salt = $this->getSalt();
-        // $this->session->set_userdata('salt',$salt);
             $password = $this->checkPassword($this->input->post('password'));
             $email = $this->input->post('email');
             $username = $this->input->post('username');

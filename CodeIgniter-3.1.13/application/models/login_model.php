@@ -10,7 +10,7 @@ class login_model extends CI_Model {
         return $query->result();
     }
 
-    public function addUser($first_name,$last_name,$username,$password/*,$salt*/,$email, $address)
+    public function addUser($first_name,$last_name,$username,$password,$email, $address)
     {
         $data_user = array(
 			'first_name' => $first_name,
@@ -18,13 +18,11 @@ class login_model extends CI_Model {
 			'password' => $password,
 			'username'	=>	$username,
             'address' => $address,
-			//'salt' => $this->session->salt,
 			'email' => $email,
             'role' => 'user',
             'created' => date("Y-m-d"),
 		);
-       // echo '<pre>';print_r($this->session->all_userdata());echo '</pre>';
-    //echo '<pre>';print_r($data_user);exit;
+        
 	$query_task = $this->db->insert('user',$data_user);
     return array($query_task);
     }
